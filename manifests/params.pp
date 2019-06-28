@@ -5,9 +5,9 @@
 #
 class caddy::params {
 
-  case $facts['os']['architecture'] {
-    'x86_64': { $arch = 'amd64'}
-    'x86'   : { $arch = '386' }
+  case $::architecture {
+    'x86_64', 'amd64': { $arch = 'amd64'}
+    'x86'            : { $arch = '386' }
     default:  {
       fail("${facts['os']['architecture']} is not supported.")
     }
