@@ -10,12 +10,6 @@ describe 'caddy::vhost', type: :define do
           architecture: 'x86_64'
         }
       }
-      {
-        osfamily: 'Debian',
-        operatingsystem: 'Ubuntu',
-        operatingsystemmajrelease: '18.04',
-        architecture: 'x86_64'
-      }
     end
     let(:pre_condition) { 'include ::caddy' }
     let(:title) { 'example1' }
@@ -44,12 +38,6 @@ describe 'caddy::vhost', type: :define do
           release: { major: '6' },
           architecture: 'x86_64'
         }
-      }
-      {
-        osfamily: 'Debian',
-        operatingsystem: 'Ubuntu',
-        operatingsystemmajrelease: '18.04',
-        architecture: 'x86_64'
       }
     end
     let(:title) { 'example2' }
