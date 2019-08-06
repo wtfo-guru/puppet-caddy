@@ -24,7 +24,7 @@ class caddy::params {
   $systemd_ambientcapabilities   = undef
   $systemd_nonewprivileges       = undef
 
-  case $::architecture {
+  case $facts['os']['architecture'] {
     'x86_64', 'amd64': { $arch = 'amd64'}
     'x86'            : { $arch = '386' }
     default:  {
