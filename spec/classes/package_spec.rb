@@ -7,8 +7,8 @@ describe 'caddy::package' do
           family: 'RedHat',
           name: 'RedHat',
           release: { major: '6' },
-          architecture: 'x86_64'
-        }
+          architecture: 'x86_64',
+        },
       }
     end
 
@@ -24,7 +24,7 @@ describe 'caddy::package' do
         'mode'    => '0755',
         'owner'   => 'root',
         'group'   => 'root',
-        'require' => 'Exec[extract caddy]'
+        'require' => 'Exec[extract caddy]',
       )
     end
   end

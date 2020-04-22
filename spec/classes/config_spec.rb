@@ -7,8 +7,8 @@ describe 'caddy::config' do
           family: 'RedHat',
           name: 'RedHat',
           release: { major: '6' },
-          architecture: 'x86_64'
-        }
+          architecture: 'x86_64',
+        },
       }
     end
 
@@ -28,8 +28,8 @@ describe 'caddy::config' do
           family: 'RedHat',
           name: 'RedHat',
           release: { major: '7' },
-          architecture: 'x86_64'
-        }
+          architecture: 'x86_64',
+        },
       }
     end
 
@@ -40,7 +40,7 @@ describe 'caddy::config' do
       is_expected.to contain_exec('systemctl-daemon-reload').with(
         refreshonly: 'true',
         path: '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-        command: 'systemctl daemon-reload'
+        command: 'systemctl daemon-reload',
       )
     end
   end

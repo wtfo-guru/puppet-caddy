@@ -7,15 +7,15 @@ describe 'caddy::vhost', type: :define do
           family: 'RedHat',
           name: 'RedHat',
           release: { major: '6' },
-          architecture: 'x86_64'
-        }
+          architecture: 'x86_64',
+        },
       }
     end
     let(:pre_condition) { 'include ::caddy' }
     let(:title) { 'example1' }
     let(:params) do
       {
-        source: 'puppet:///modules/caddy/etc/caddy/config/example1.conf'
+        source: 'puppet:///modules/caddy/etc/caddy/config/example1.conf',
       }
     end
 
@@ -25,7 +25,7 @@ describe 'caddy::vhost', type: :define do
         'source'  => 'puppet:///modules/caddy/etc/caddy/config/example1.conf',
         'mode'    => '0444',
         'require' => 'Class[Caddy::Config]',
-        'notify'  => 'Class[Caddy::Service]'
+        'notify'  => 'Class[Caddy::Service]',
       )
     end
   end
@@ -36,15 +36,15 @@ describe 'caddy::vhost', type: :define do
           family: 'RedHat',
           name: 'RedHat',
           release: { major: '6' },
-          architecture: 'x86_64'
-        }
+          architecture: 'x86_64',
+        },
       }
     end
     let(:title) { 'example2' }
     let(:pre_condition) { 'include ::caddy' }
     let(:params) do
       {
-        content: 'localhost:2015'
+        content: 'localhost:2015',
       }
     end
 
@@ -54,7 +54,7 @@ describe 'caddy::vhost', type: :define do
         'content' => 'localhost:2015',
         'mode'    => '0444',
         'require' => 'Class[Caddy::Config]',
-        'notify'  => 'Class[Caddy::Service]'
+        'notify'  => 'Class[Caddy::Service]',
       )
     end
   end
