@@ -28,6 +28,21 @@ group :development do
   gem "puppet-module-posix-dev-r#{minor_version}", '~> 0.4',     require: false, platforms: [:ruby]
   gem "puppet-module-win-default-r#{minor_version}", '~> 0.4',   require: false, platforms: [:mswin, :mingw, :x64_mingw]
   gem "puppet-module-win-dev-r#{minor_version}", '~> 0.4',       require: false, platforms: [:mswin, :mingw, :x64_mingw]
+  gem 'travis',                                                  :require => false
+  gem 'travis-lint',                                             :require => false
+  gem 'guard-rake',                                              :require => false
+  gem 'overcommit', '>= 0.39.1',                                 :require => false
+end
+
+group :system_tests do
+  gem 'voxpupuli-acceptance',  :require => false
+end
+
+group :release do
+  gem 'github_changelog_generator',  :require => false, :git => 'https://github.com/voxpupuli/github-changelog-generator', :branch => 'voxpupuli_essential_fixes'
+  gem 'puppet-blacksmith',           :require => false
+  gem 'voxpupuli-release',           :require => false
+  gem 'puppet-strings', '>= 2.2',    :require => false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
