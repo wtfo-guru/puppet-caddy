@@ -39,7 +39,7 @@ group :system_tests do
 end
 
 group :release do
-  gem 'github_changelog_generator',  :require => false, :git => 'https://github.com/voxpupuli/github-changelog-generator', :branch => 'voxpupuli_essential_fixes'
+  gem 'github_changelog_generator',  :require => false, :git => 'https://github.com/voxpupuli/github-changelog-generator', :branch => 'voxpupuli_essential_fixes' if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.5.0')
   gem 'puppet-blacksmith',           :require => false
   gem 'voxpupuli-release',           :require => false
   gem 'puppet-strings', '>= 2.2',    :require => false
