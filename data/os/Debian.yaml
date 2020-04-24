@@ -1,0 +1,5 @@
+---
+
+caddy::caddy_home: '/opt/caddy'
+caddy::caddy_user: 'www-data'
+caddy::caddy_group: 'www-data'

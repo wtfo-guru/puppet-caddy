@@ -8,6 +8,15 @@ describe 'caddy::config' do
                 'systemd'
               end
 
+    case os_facts[:osfamily]
+    when 'Debian'
+      caddy_home = '/opt/caddy'
+      caddy_user = caddy_group = 'www-data'
+    when 'RedHat'
+      caddy_home = '/etc/ssl/caddy'
+      caddy_user = caddy_group = 'caddy'
+    end
+
     context "on #{os}" do
       context 'with default values' do
         let(:facts) { os_facts.merge(service_provider: svcpro) } # factordb doesn't provide service_provider
@@ -16,11 +25,12 @@ describe 'caddy::config' do
         it { is_expected.to contain_file('/etc/caddy') }
         it { is_expected.to contain_file('/etc/caddy/Caddyfile') }
         it { is_expected.to contain_file('/etc/caddy/config') }
+        it { is_expected.to contain_file("#{caddy_home}/.caddy") }
         it { is_expected.to contain_file('/var/log/caddy') }
-        it { is_expected.to contain_file('/etc/ssl/caddy/.caddy') }
+        it { is_expected.to contain_user(caddy_user) }
+        it { is_expected.to contain_group(caddy_group) }
+        it { is_expected.to contain_exec("create #{caddy_home} if needed") }
         it { is_expected.to contain_exec('set cap caddy') }
-        it { is_expected.to contain_user('caddy') }
-        it { is_expected.to contain_group('caddy') }
 
         if svcpro == 'systemd'
           it { is_expected.to contain_file('/etc/systemd/system/caddy.service') }

@@ -19,6 +19,16 @@ class caddy::config inherits caddy {
     managehome => true,
   }
 
+  # assuming the caddy_user was already installed on the target system
+  # the user resource will alter the user's home in /etc/passwd but will
+  # not create or initialize it with skel
+  exec {"create ${caddy::caddy_home} if needed":
+    creates => $caddy::caddy_home,
+    command => "mkdir -p '${caddy::caddy_home}'; chmod 755 '${caddy::caddy_home}'; chown ${caddy::caddy_user}:${caddy::caddy_group} '${caddy::caddy_home}'",
+    path    => ['/usr/bin', '/bin'],
+    before  => File[$caddy::caddy_ssl_dir]
+  }
+
   file {$caddy::caddy_ssl_dir:
     ensure  => directory,
     owner   => $caddy::caddy_user,
