@@ -23,7 +23,6 @@ class caddy::service (
     'systemd': {
       systemd::unit_file { 'caddy.service':
         content => template('caddy/etc/systemd/system/caddy.service.erb'),
-        require => Class['caddy::package'],
       }
     }
     'redhat': { # we could probably add 'debian' for older debian releases but not sure
@@ -40,11 +39,7 @@ class caddy::service (
     }
   }
 
-<<<<<<< HEAD
-  service{ 'caddy':
-=======
-  -> service{'caddy':
->>>>>>> 654e1ce... Added default parameter values to module manifest for puppet-strings support.
+  service{'caddy':
     ensure => running,
     enable => true,
   }
